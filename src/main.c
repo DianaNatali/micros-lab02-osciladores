@@ -1,37 +1,35 @@
 #include <xc.h>
 #include <stdint.h>
 
+// ========================== CONFIGURACIÓN GENERAL ========================
+// Configuraciones que no dependen del modo de oscilador
+#pragma config WDTEN = OFF      
+#pragma config LVP = OFF        
+#pragma config PBADEN = OFF     
+#pragma config CP0 = OFF, CP1 = OFF, CP2 = OFF, CP3 = OFF  
+#pragma config BOREN = OFF      
+#pragma config FCMEN = OFF      
+#pragma config IESO = OFF       
+
 // ========================== MODO DE OSCILADOR ==========================
 // 1 = INTOSC interno
 // 2 = Cristal externo HS
 // 3 = RC externo
 #define MODE 1  
 
-// ========================== CONFIGURACIÓN DEL PIC ========================
 #if MODE == 1
-    // Oscilador interno 16 MHz
-    #pragma config FOSC = INTIO67
-    #pragma config WDTEN = OFF
-    #pragma config LVP = OFF
-    #pragma config PBADEN = OFF
+    #pragma config FOSC = INTIO67   // Oscilador interno
     #define USE_PLL 0
 #elif MODE == 2
-    // Cristal externo HS 16 MHz
-    #pragma config FOSC = HS
-    #pragma config WDTEN = OFF
-    #pragma config LVP = OFF
-    #pragma config PBADEN = OFF
+    #pragma config FOSC = HS        // Cristal HS
     #define USE_PLL 0
 #elif MODE == 3
-    // RC externo
-    #pragma config FOSC = RC
-    #pragma config WDTEN = OFF
-    #pragma config LVP = OFF
-    #pragma config PBADEN = OFF
+    #pragma config FOSC = RC        // RC externo
     #define USE_PLL 0
 #else
     #error "Modo de oscilador inválido"
 #endif
+
 
 // ========================== FRECUENCIA DEL OSCILADOR =====================
 #if MODE == 1 || MODE == 2
