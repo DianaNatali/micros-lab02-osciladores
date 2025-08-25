@@ -44,9 +44,10 @@
 
 ## 2.5 Formas de onda
 
-### HS
-
 ### INTOSC (interno) 
+
+
+### HS
 
 ## RC
 

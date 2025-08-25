@@ -21,10 +21,10 @@
     #pragma config FOSC = INTIO67   // Oscilador interno
     #define USE_PLL 0
 #elif MODE == 2
-    #pragma config FOSC = HS        // Cristal HS
+    #pragma config FOSC = HSHP     // Cristal HS
     #define USE_PLL 0
 #elif MODE == 3
-    #pragma config FOSC = RC        // RC externo
+    #pragma config FOSC = RC       // RC externo
     #define USE_PLL 0
 #else
     #error "Modo de oscilador inválido"
@@ -55,7 +55,7 @@ void init_pins(void) {
     LATCbits.LATC0 = 0;
 
     // RA6 salida CLKO solo si modo lo permite
-    if(MODE != 2 || (MODE == 2 && USE_PLL)) {
+    if(MODE == 1 || (MODE == 2 && USE_PLL)) {
         TRISAbits.TRISA6 = 0;
         LATAbits.LATA6 = 0;
     }
